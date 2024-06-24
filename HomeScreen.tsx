@@ -19,14 +19,14 @@ import {
 import auth from "@react-native-firebase/auth"
 import SignUpScreen from './SignUp';
 
-const Login=({navigation})=>{
+const Home=({navigation})=>{
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
   const LoginTestFn=()=>{
     auth().signInWithEmailAndPassword(email,password).then(()=>{
       Alert.alert("Login Successfull")
-      navigation.navigate("Home")
+      navigation.navigate("")
     })
     .catch((err=>{
       console.log(err)
@@ -41,28 +41,13 @@ const Login=({navigation})=>{
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.title}>Login</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Email"
-          value={email}
-          onChangeText={text=>setEmail(text)}
-          keyboardType="email-address"
-          autoCapitalize="none"
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Password( au moins 6 x-ters)"
-          value={password}
-          onChangeText={text=>setPassword(text)}
-          secureTextEntry={true}
-        />
+        <Text style={styles.title}>Bataille Navale</Text>
         <TouchableOpacity style={styles.button} onPress={LoginTestFn}>
-          <Text style={styles.buttonText}>Login</Text>
+          <Text style={styles.buttonText}>Player VS Player</Text>
         </TouchableOpacity>
-        <TouchableWithoutFeedback onPress={goSignUP}>
-          <Text style={styles.loginText}>Sign-Up Instead</Text>
-        </TouchableWithoutFeedback>
+        <TouchableOpacity style={styles.button} onPress={LoginTestFn}>
+          <Text style={styles.buttonText}>Player VS AI</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
@@ -113,4 +98,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default Home;

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "544137793521",
+    "project_id": "bataille-7c37e",
+    "storage_bucket": "bataille-7c37e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:544137793521:android:3a2790815a25afddac7e50",
+        "android_client_info": {
+          "package_name": "com.bataille"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBT51SAHaXG255HqOBi3c5qlDYf3Iufe0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

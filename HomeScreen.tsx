@@ -20,32 +20,24 @@ import auth from "@react-native-firebase/auth"
 import SignUpScreen from './SignUp';
 
 const Home=({navigation})=>{
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  
-  const LoginTestFn=()=>{
-    auth().signInWithEmailAndPassword(email,password).then(()=>{
-      Alert.alert("Login Successfull")
-      navigation.navigate("")
-    })
-    .catch((err=>{
-      console.log(err)
-    }))
-  }
 
-  const goSignUP = () => {
+  const gomodeAI = () => {
     //for next navigation
-    navigation.navigate("SignUp")
+    navigation.navigate("ModeAI")
+  };
+  const gomodePlayer = () => {
+    //for next navigation
+    navigation.navigate("ModeAI")
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
         <Text style={styles.title}>Bataille Navale</Text>
-        <TouchableOpacity style={styles.button} onPress={LoginTestFn}>
+        <TouchableOpacity style={styles.button} onPress={gomodePlayer}>
           <Text style={styles.buttonText}>Player VS Player</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={LoginTestFn}>
+        <TouchableOpacity style={styles.button} onPress={gomodeAI}>
           <Text style={styles.buttonText}>Player VS AI</Text>
         </TouchableOpacity>
       </View>

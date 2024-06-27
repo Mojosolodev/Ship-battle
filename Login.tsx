@@ -24,13 +24,18 @@ const Login=({navigation})=>{
   const [password, setPassword] = useState('');
   
   const LoginTestFn=()=>{
+    if(email && password)
     auth().signInWithEmailAndPassword(email,password).then(()=>{
       Alert.alert("Login Successfull")
       navigation.navigate("Home")
     })
     .catch((err=>{
       console.log(err)
+      Alert.alert(err.message)
     }))
+    else(
+      Alert.alert("Enter email And Password")
+    )
   }
 
   const goSignUP = () => {

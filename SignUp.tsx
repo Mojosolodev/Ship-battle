@@ -24,13 +24,19 @@ const SignUp=({navigation})=>{
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const signUpTestFn=()=>{
+    if(email && password)
     auth().createUserWithEmailAndPassword(email,password).then(()=>{
       Alert.alert("User created");
       navigation.navigate("Login")
     })
     .catch((err=>{
       console.log(err)
+      Alert.alert(err.message)
     }))
+    else
+    {
+      Alert.alert("Enter email and Password")
+    }
   }
 
   const goLogin = () => {

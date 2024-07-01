@@ -4,6 +4,7 @@ import SignUpScreen from './SignUp';
 import SignUp from './SignUp';
 import Home from './HomeScreen';
 import ModeAI from './ModeAI';
+import ModePlayer from './ModePlayer';
 
 const Stack = createStackNavigator();
 
@@ -14,6 +15,7 @@ export default function MyStack() {
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="ModeAI" component={ModeAI} />
+      <Stack.Screen name="ModePlayer" component={ModePlayer} />
     </Stack.Navigator>
   );
 }

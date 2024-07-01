@@ -16,19 +16,37 @@ import {
   TouchableWithoutFeedback,
   Alert,
 } from 'react-native';
-import auth from "@react-native-firebase/auth"
+import auth from "@react-native-firebase/auth";
+import firestore from "@react-native-firebase/firestore";
 import SignUpScreen from './SignUp';
 
-const Home=({navigation})=>{
+const Home = ({ route, navigation }) => {
+  // Get the email value from the route.params object
+  const { email } = route.params || {};
 
   const gomodeAI = () => {
-    //for next navigation
-    navigation.navigate("ModeAI")
+    navigation.navigate("ModeAI");
   };
-  const gomodePlayer = () => {
-    //for next navigation
-    navigation.navigate("ModeAI")
+
+  const gomodePlayer = async () => {
+    try {
+      // Get the current user's document key from Firestore
+      const userDoc = await firestore().collection('users').doc(auth().currentUser.uid).get();
+      const documentKey = userDoc.id;
+
+      // Pass the documentKey to the ModePlayer screen
+      navigation.navigate("ModePlayer", { email: email, documentKey: documentKey });
+    } catch (error) {
+      console.error('Error getting document key:', error);
+    }
   };
+
+  // Display the email in an Alert
+  React.useEffect(() => {
+    if (email) {
+      Alert.alert('Logged in as', email);
+    }
+  }, [email]);
 
   return (
     <SafeAreaView style={styles.container}>

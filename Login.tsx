@@ -19,27 +19,26 @@ import {
 import auth from "@react-native-firebase/auth"
 import SignUpScreen from './SignUp';
 
-const Login=({navigation})=>{
+const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
-  const LoginTestFn=()=>{
-    if(email && password)
-    auth().signInWithEmailAndPassword(email,password).then(()=>{
-      Alert.alert("Login Successfull")
-      navigation.navigate("Home")
-    })
-    .catch((err=>{
-      console.log(err)
-      Alert.alert(err.message)
-    }))
-    else(
+
+  const LoginTestFn = () => {
+    if (email && password)
+      auth().signInWithEmailAndPassword(email, password).then(() => {
+        Alert.alert("Login Successful");
+        // Store the email in the navigation state
+        navigation.navigate("Home", { email: email });
+      })
+      .catch((err) => {
+        console.log(err)
+        Alert.alert(err.message)
+      })
+    else
       Alert.alert("Enter email And Password")
-    )
   }
 
   const goSignUP = () => {
-    //for next navigation
     navigation.navigate("SignUp")
   };
 
@@ -51,7 +50,7 @@ const Login=({navigation})=>{
           style={styles.input}
           placeholder="Email"
           value={email}
-          onChangeText={text=>setEmail(text)}
+          onChangeText={text => setEmail(text)}
           keyboardType="email-address"
           autoCapitalize="none"
         />
@@ -59,7 +58,7 @@ const Login=({navigation})=>{
           style={styles.input}
           placeholder="Password( au moins 6 x-ters)"
           value={password}
-          onChangeText={text=>setPassword(text)}
+          onChangeText={text => setPassword(text)}
           secureTextEntry={true}
         />
         <TouchableOpacity style={styles.button} onPress={LoginTestFn}>

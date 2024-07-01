@@ -5,7 +5,7 @@
  * @format
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -17,16 +17,26 @@ import {
   Alert,
 } from 'react-native';
 import auth from "@react-native-firebase/auth"
+import firestore from '@react-native-firebase/firestore';
+
 
 const SignUp=({navigation})=>{
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
+  
+  
   const signUpTestFn=()=>{
     if(email && password)
     auth().createUserWithEmailAndPassword(email,password).then(()=>{
       Alert.alert("User created");
+      firestore().collection("users").add({
+        email:email,
+        positionX:0,
+        positionY:0,
+        opponentKey:"",
+        userKey:""
+      })
       navigation.navigate("Login")
     })
     .catch((err=>{
